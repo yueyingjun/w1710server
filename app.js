@@ -3,15 +3,34 @@ var myexpress=require("./myexpress");
 var obj=myexpress();
 obj.listen();
 
-var url="/abc/zhangsan";
-var rule="/abc/:id"
+var url="/abc/zhangsan/lisi/wangwu";
+var rule="/abc/:id/:id1/:id2"
+
+
+
 
 
 function change(rule){
 
-    var reg="/"+rule.replace(/\//g,"\\/").replace(/:[^\/]+/g,"([^\\/]+)")+"/";
+    var arr=rule.match(/:([^\/]+)/g);
 
-    console.log(eval(reg).exec(url)[1]);
+    arr=arr.map(function (item) {
+        return item.substr(1);
+    });
+    console.log(arr);
+
+    var reg="/"+rule.replace(/:[^\/]+/g,"([^\\/]+)").replace(/\//g,"\\/")+"/";
+
+
+    var obj={};
+
+    var result=eval(reg).exec(url);
+    for(var i=0;i<arr.length;i++){
+        obj[arr[i]]=result[i+1]
+    }
+
+   console.log(obj.id2)
+
 }
 
 change(rule);
