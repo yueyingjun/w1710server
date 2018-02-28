@@ -3,31 +3,27 @@ var myexpress=require("./myexpress");
 var obj=myexpress();
 obj.listen();
 
+var url="/abc/zhangsan";
+var rule="/abc/:id"
 
-obj.get("/abc",function (req,res) {
+
+function change(rule){
+
+    var reg="/"+rule.replace(/\//g,"\\/").replace(/:[^\/]+/g,"([^\\/]+)")+"/";
+
+    console.log(eval(reg).exec(url)[1]);
+}
+
+change(rule);
+
+
+
+
+
+process.exit();
+
+
+obj.get("/abc/:id",function (req,res) {
     res.sendFile("./abc.html")
-})
-
-obj.get("/aaa",function (req,res) {
-    res.end("1");
-
-})
-
-obj.get("/bbb",function (req,res) {
-    res.end("插入");
-})
-obj.post("/bbb",function (req,res) {
-
-    res.end("获取")
-})
-obj.put("/bbb",function (req,res) {
-
-    res.end("更新")
-})
-
-
-obj.delete("/bbb",function (req,res) {
-
-    res.end("删除")
 })
 

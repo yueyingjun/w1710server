@@ -6,15 +6,13 @@ class myexpress{
     constructor(){
         this.getInfo={};
         this.postInfo={};
+
         this.deleteInfo={};
+
         this.putInfo={};
+
     }
-    /*
-    * listen 方法用来启动服务器
-    *
-    * [port] 端口 默认值 8888  type number [3333-8888]
-    * [callback] 回调函数  默认值   console.log(port+"启动....") type function
-    * */
+
     listen(port,callback){
         if(arguments.length==0){
             var port="8888";
@@ -49,16 +47,24 @@ class myexpress{
     get(url,callback){
         // 算法和数据结构
         this.getInfo[url]=callback;
+
+
     }
     post(url,callback){
         this.postInfo[url]=callback;
+
     }
     delete(url,callback){
         this.deleteInfo[url]=callback;
+
+
     }
     put(url,callback){
         this.putInfo[url]=callback;
+
     }
+
+
     run(req,res){
 
         var url=req.url;
@@ -78,10 +84,11 @@ class myexpress{
                     }
                 })
             }
-            
+
             var infos=this[req.method.toLowerCase()+"Info"];
 
             console.log(infos);
+
             if(infos[url]) {
                 infos[url](req, res)
             }else{
