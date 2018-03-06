@@ -6,20 +6,14 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script>
-
-        var ajax=new XMLHttpRequest();
-        ajax.onload=function () {
-            console.log(ajax.response);
-        }
-        ajax.open("delete","/bbb");
-        ajax.send();
-
-
-    </script>
 </head>
 <body>
-
-<form action="" method="" enctype="application/x-www-form-urlencoded"></form>
+  <ul>
+      <%for(var i=0;i<result.length;i++){%>
+      <li>
+          <%=result[i].name%>
+      </li>
+      <%}%>
+  </ul>
 </body>
 </html>
